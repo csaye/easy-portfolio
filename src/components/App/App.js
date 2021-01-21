@@ -5,6 +5,14 @@ import Navbar from '../Navbar/Navbar.js';
 import Edit from '../Edit/Edit.js';
 import Portfolio from '../Portfolio/Portfolio.js';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { firebaseConfig } from '../../util/firebaseConfig.js';
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+
 function App() {
   return (
     <div className="App">

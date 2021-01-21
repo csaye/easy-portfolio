@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# EasyPortfolio
+
+Construct and share professional portfolios with ease. Coming soon.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

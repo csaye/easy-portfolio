@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 
+import ProjectEditList from '../ProjectEditList/ProjectEditList.js';
+
 function Edit() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
-  const [content, setContent] = useState('');
 
   const [loading, setLoading] = useState(true);
 
+  // get uid
+  const uid = 'test-uid';
+
   async function getPortfolioData() {
-    const uid = 'test-uid';
     const doc = await firebase.firestore().collection('portfolios').doc(uid).get();
     const data = doc.data();
     // set parameters from data
     setTitle(data.title);
     setSubtitle(data.subtitle);
-    setContent(data.content);
     // set loading false
     setLoading(false);
   }
@@ -32,22 +34,22 @@ function Edit() {
     await firebase.firestore().collection('portfolios').doc(uid).update({
       title: title,
       subtitle: subtitle,
-      content: content
     });
+    // go to portfolio page
+    window.location.href = "/";
   }
 
-  // if loading, wait
+  // if loading portfolio data, wait
   if (loading) {
     return (
       <div className="Edit">
-        <p>Loading...</p>
+        <p>Loading portfolio...</p>
       </div>
     );
   }
 
   return (
     <div className="Edit">
-      <p>Editing portfolio</p>
       <form onSubmit={publishPortfolio}>
         {/* Title */}
         <label htmlFor="titleInput">Title</label>
@@ -67,18 +69,11 @@ function Edit() {
         placeholder="Subtitle"
         onChange={e => setSubtitle(e.target.value)}
         />
-        {/* Content */}
-        <label htmlFor="contentInput">Content</label>
-        <input
-        value={content}
-        type="text"
-        id="contentInput"
-        placeholder="Content"
-        onChange={e => setContent(e.target.value)}
-        />
         {/* Publish */}
         <button type="submit">Publish</button>
       </form>
+      <hr />
+      <ProjectEditList />
     </div>
   );
 }

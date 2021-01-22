@@ -1,0 +1,29 @@
+.navbar {
+  background-color: #efefef;
+  min-height: 75px;
+}
+
+.navbar-brand img {
+  height: 50px;
+}
+
+.navbar-nav .nav-item {
+  height: 100%;
+}
+
+.navbar-nav li a, .navbar-nav li button, .navbar-nav li p {
+    float: right;
+}
+
+/* Top */
+@media (min-width: 992px) {
+  .Navbar .link {
+    margin-right: 20px;
+  }
+}
+/* Dropdown */
+@media (max-width: 991px) {
+  .Navbar .link {
+    margin-top: 5px;
+  }
+}

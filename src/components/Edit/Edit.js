@@ -6,6 +6,7 @@ import ProjectEditList from '../ProjectEditList/ProjectEditList.js';
 function Edit() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
+  const [bgColor, setBgColor] = useState(undefined);
 
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +19,7 @@ function Edit() {
     // set parameters from data
     setTitle(data.title);
     setSubtitle(data.subtitle);
+    setBgColor(data.bgColor);
     // set loading false
     setLoading(false);
   }
@@ -34,6 +36,7 @@ function Edit() {
     await firebase.firestore().collection('portfolios').doc(uid).update({
       title: title,
       subtitle: subtitle,
+      bgColor: bgColor
     });
     // go to portfolio page
     window.location.href = "/";
@@ -68,6 +71,14 @@ function Edit() {
         id="subtitleInput"
         placeholder="Subtitle"
         onChange={e => setSubtitle(e.target.value)}
+        />
+        {/* Background color */}
+        <label htmlFor="bgColorInput">Background Color</label>
+        <input
+        value={bgColor}
+        type="color"
+        id="bgColorInput"
+        onChange={e => setBgColor(e.target.value)}
         />
         {/* Publish */}
         <button type="submit">Publish</button>

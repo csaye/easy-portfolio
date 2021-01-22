@@ -8,6 +8,7 @@ import Portfolio from '../Portfolio/Portfolio.js';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 import { firebaseConfig } from '../../util/firebaseConfig.js';
 
 // initialize firebase
@@ -17,12 +18,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <header>
-          <Navbar />
-        </header>
-        <section>
-          <Page />
-        </section>
+        <Navbar />
+        <Page />
       </Router>
     </div>
   );

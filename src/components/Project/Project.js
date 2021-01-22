@@ -5,7 +5,7 @@ function Project(props) {
   return (
     <div className="Project">
       <hr />
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <p>{description}</p>
     </div>
   );

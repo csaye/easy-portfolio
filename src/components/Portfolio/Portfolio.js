@@ -35,7 +35,9 @@ function Portfolio() {
   }
 
   return (
-    <div className="Portfolio text-center">
+    <div className="Portfolio text-center" style={{
+      backgroundColor: data.bgColor
+    }}>
       <h1>{data.title}</h1>
       <h2>{data.subtitle}</h2>
       <ProjectList />

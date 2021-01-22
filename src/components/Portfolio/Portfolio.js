@@ -1,3 +1,4 @@
+import './Portfolio.css';
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import { useCollectionData } from 'react-firebase-hooks/firestore';

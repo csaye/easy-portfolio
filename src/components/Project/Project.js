@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 function Project(props) {
   // get project data from props
-  const { id, uid, title, description } = props.data;
+  const { id, uid, title, description, url } = props.data;
 
   // get image url
   const [imgUrl, setImgUrl] = useState(undefined);
@@ -11,7 +11,7 @@ function Project(props) {
   async function getImgUrl() {
     const storageRef = firebase.storage().ref(uid + '/' + id);
     await storageRef.getDownloadURL()
-    .then(url => setImgUrl(url))
+    .then(iUrl => setImgUrl(iUrl))
     .catch(e => console.log('No image found to show. This is fine.'));
     // stop loading
     setLoading(false);
@@ -37,7 +37,9 @@ function Project(props) {
       <hr />
       <h2>{title}</h2>
       <p>{description}</p>
-      <img src={imgUrl} alt={title}/>
+      <a href={url} target="_blank" rel="noreferrer">
+        <img src={imgUrl} alt={title}/>
+      </a>
     </div>
   );
 }

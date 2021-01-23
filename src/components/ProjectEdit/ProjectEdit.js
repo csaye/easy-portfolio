@@ -9,6 +9,7 @@ function ProjectEdit(props) {
   const [title, setTitle] = useState(props.data.title);
   const [description, setDescription] = useState(props.data.description);
   const [image, setImage] = useState(props.data.image);
+  const [url, setUrl] = useState(props.data.url);
 
   async function updateProject(e) {
     e.preventDefault();
@@ -20,7 +21,8 @@ function ProjectEdit(props) {
     // update project
     await firebase.firestore().collection('projects').doc(id).update({
       title: title,
-      description: description
+      description: description,
+      url: url
     });
   }
 
@@ -52,6 +54,15 @@ function ProjectEdit(props) {
         id={`descriptionInput-${id}`}
         placeholder="Description"
         onChange={e => setDescription(e.target.value)}
+        />
+        {/* URL */}
+        <label htmlFor={`urlInput-${id}`}>URL</label>
+        <input
+        value={url}
+        type="url"
+        id={`urlInput-${id}`}
+        placeholder="Project URL"
+        onChange={e => setUrl(e.target.value)}
         />
         {/* Image */}
         <label htmlFor={`imageInput-${id}`}>Image</label>

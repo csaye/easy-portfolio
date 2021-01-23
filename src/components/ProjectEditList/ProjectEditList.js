@@ -19,6 +19,7 @@ function ProjectEditList() {
       description: '',
       date: new Date(),
       uid: uid,
+      url: ''
     });
   }
 

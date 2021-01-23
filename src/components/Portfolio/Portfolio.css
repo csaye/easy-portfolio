@@ -1,3 +1,9 @@
 .Portfolio img {
   width: 600px;
+  box-shadow: 0 2px 5px #999;
+  transition: box-shadow 0.25s ease-in-out;
+}
+
+.Portfolio img:hover {
+    box-shadow: 0 2px 15px #999;
 }

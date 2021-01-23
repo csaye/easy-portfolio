@@ -9,6 +9,7 @@ function Edit() {
   const [bgColor, setBgColor] = useState(undefined);
 
   const [loading, setLoading] = useState(true);
+  const [saved, setSaved] = useState(false);
 
   // get uid
   const uid = 'test-uid';
@@ -29,8 +30,9 @@ function Edit() {
     getPortfolioData();
   }, []);
 
-  async function publishPortfolio(e) {
+  async function savePortfolio(e) {
     e.preventDefault();
+    setSaved(false);
     // update portfolio
     const uid = 'test-uid';
     await firebase.firestore().collection('portfolios').doc(uid).update({
@@ -38,8 +40,7 @@ function Edit() {
       subtitle: subtitle,
       bgColor: bgColor
     });
-    // go to portfolio page
-    window.location.href = "/";
+    setSaved(true);
   }
 
   // if loading portfolio data, wait
@@ -53,7 +54,7 @@ function Edit() {
 
   return (
     <div className="Edit">
-      <form onSubmit={publishPortfolio}>
+      <form onSubmit={savePortfolio}>
         {/* Title */}
         <label htmlFor="titleInput">Title</label>
         <input
@@ -80,8 +81,10 @@ function Edit() {
         id="bgColorInput"
         onChange={e => setBgColor(e.target.value)}
         />
-        {/* Publish */}
-        <button type="submit">Publish</button>
+        {/* Save */}
+        <button type="submit">Save</button>
+        {/* Save text */}
+        { saved && <p className="text-success">Portfolio saved successfully</p> }
       </form>
       <hr />
       <ProjectEditList />

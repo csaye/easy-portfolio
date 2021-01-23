@@ -9,10 +9,14 @@ function Project(props) {
   const [imgUrl, setImgUrl] = useState(undefined);
   const [loading, setLoading] = useState(true);
   async function getImgUrl() {
-    const storageRef = firebase.storage().ref(uid + '/' + id);
-    await storageRef.getDownloadURL()
-    .then(iUrl => setImgUrl(iUrl))
-    .catch(e => console.log('No image found to show. This is fine.'));
+    // if image exists
+    const listResult = await firebase.storage().ref(uid + '/' + id).listAll();
+    if (listResult.items.length > 0) {
+      // set image url
+      const storageRef = firebase.storage().ref(uid + '/' + id + '/image');
+      const iUrl = await storageRef.getDownloadURL();
+      setImgUrl(iUrl);
+    }
     // stop loading
     setLoading(false);
   }

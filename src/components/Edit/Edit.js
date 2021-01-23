@@ -6,7 +6,8 @@ import ProjectEditList from '../ProjectEditList/ProjectEditList.js';
 function Edit() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
-  const [bgColor, setBgColor] = useState(undefined);
+  const [bgColor, setBgColor] = useState('');
+  const [textColor, setTextColor] = useState('');
 
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
@@ -21,6 +22,7 @@ function Edit() {
     setTitle(data.title);
     setSubtitle(data.subtitle);
     setBgColor(data.bgColor);
+    setTextColor(data.textColor);
     // set loading false
     setLoading(false);
   }
@@ -38,7 +40,8 @@ function Edit() {
     await firebase.firestore().collection('portfolios').doc(uid).update({
       title: title,
       subtitle: subtitle,
-      bgColor: bgColor
+      bgColor: bgColor,
+      textColor: textColor
     });
     setSaved(true);
   }
@@ -80,6 +83,14 @@ function Edit() {
         type="color"
         id="bgColorInput"
         onChange={e => setBgColor(e.target.value)}
+        />
+        {/* Text color */}
+        <label htmlFor="textColorInput">Text Color</label>
+        <input
+        value={textColor}
+        type="color"
+        id="textColorInput"
+        onChange={e => setTextColor(e.target.value)}
         />
         {/* Save */}
         <button type="submit">Save</button>

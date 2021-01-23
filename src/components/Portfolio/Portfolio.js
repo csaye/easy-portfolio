@@ -37,7 +37,8 @@ function Portfolio() {
 
   return (
     <div className="Portfolio text-center" style={{
-      backgroundColor: data.bgColor
+      backgroundColor: data.bgColor,
+      color: data.textColor
     }}>
       <h1>{data.title}</h1>
       <h2>{data.subtitle}</h2>

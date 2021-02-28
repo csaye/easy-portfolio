@@ -1,6 +1,6 @@
 # EasyPortfolio
 
-Construct and share professional portfolios with ease. Coming soon.
+Construct and share portfolios.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
